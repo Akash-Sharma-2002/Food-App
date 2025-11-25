@@ -48,12 +48,17 @@
 @media (max-width: 750px) {
   .header-contents {
     max-width: 55%;
-    bottom: 9%;
   }
   .header-contents p {
     display: none;
   }
   .header-contents button {
     padding: 2vw 4vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-contents {
+    max-width: 70%;
   }
 }

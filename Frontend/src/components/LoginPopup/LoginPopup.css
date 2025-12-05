@@ -8,7 +8,7 @@
 }
 .login-popup-container {
   place-self: center;
-  width: max(23vw, 380px);
+  width: max(23vw, 340px);
   color: #808080;
   background-color: #fff;
   display: flex;

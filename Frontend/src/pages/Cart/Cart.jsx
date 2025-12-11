@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import "./Cart.css";
 import { StoreContext } from "../../components/Context/StoreContext";
+import { assets } from "../../assets/assets";
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart, addToCart, subtotal } =
+    useContext(StoreContext);
   return (
     <div className="cart">
       <div className="cart-items">
@@ -12,7 +14,6 @@ const Cart = () => {
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
-          <p>Remove</p>
         </div>
         <br />
         <hr />
@@ -22,12 +23,21 @@ const Cart = () => {
               <div className="cart-items-title cart-items-item" key={index}>
                 <img src={item.image} alt="" />
                 <p>{item.name}</p>
-                <p>{item.price}</p>
+                <p>${item.price}</p>
                 <p>{cartItems[item._id]}</p>
-                <p>{item.price * cartItems[item._id]}</p>
-                <p onClick={() => removeFromCart(item._id)} className="cross">
-                  x
-                </p>
+                <p>${item.price * cartItems[item._id]}</p>
+                <div>
+                  <img
+                    src={assets.remove_icon_red}
+                    onClick={() => removeFromCart(item._id)}
+                    alt=""
+                  />
+                  <img
+                    src={assets.add_icon_green}
+                    onClick={() => addToCart(item._id)}
+                    alt=""
+                  />
+                </div>
               </div>
             );
           }
@@ -39,21 +49,21 @@ const Cart = () => {
           <h2>Cart Total</h2>
           <div className="cart-total-details">
             <p>Subtotal</p>
-            <p>{0}</p>
+            <p>${subtotal}</p>
           </div>
           <hr />
           <div className="cart-total-details">
             <p>Delivery fee</p>
-            <p>{2}</p>
+            <p>${2}</p>
           </div>
           <hr />
           <div className="cart-total-details">
             <b>Total</b>
-            <b>{0}</b>
+            <b>${subtotal + 2}</b>
           </div>
           <button>PROCEED TO CHECKOUT</button>
         </div>
-        
+
         <div className="cart-promocode">
           <div>
             <p>If you have a promocode, Enter it here.</p>

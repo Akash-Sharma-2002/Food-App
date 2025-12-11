@@ -5,6 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
+  const [subtotal, setSubtotal] = useState(0);
 
   const addToCart = (itemId) => {
     if (!cartItems[itemId]) {
@@ -17,6 +18,14 @@ const StoreContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   };
+
+  useEffect(() => {
+    const newSubtotal = food_list.reduce((total, item) => {
+      return total + (cartItems[item._id] || 0) * item.price;
+    }, 0);
+    setSubtotal(newSubtotal);
+  }, [cartItems, food_list]);
+
   useEffect(() => {
     console.log(cartItems);
   }, [cartItems]);
@@ -27,6 +36,7 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addToCart,
     removeFromCart,
+    subtotal,
   };
 
   return (

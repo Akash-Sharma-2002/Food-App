@@ -38,3 +38,16 @@
 .place-order .cart-total button {
   margin-top: 30px;
 }
+
+@media (max-width: 750px) {
+  .place-order {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .order-info{
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+  }
+  .place-order-left .title {
+    margin-bottom: 30px;
+  }
+}

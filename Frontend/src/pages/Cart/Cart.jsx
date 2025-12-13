@@ -3,6 +3,7 @@ import "./Cart.css";
 import { StoreContext } from "../../components/Context/StoreContext";
 import { assets } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
+
 const Cart = () => {
   const navigate = useNavigate();
   const {
@@ -51,38 +52,62 @@ const Cart = () => {
         })}
         <hr />
       </div>
-      <div className="cart-bottom">
-        <div className="cart-total">
-          <h2>Cart Total</h2>
-          <div className="cart-total-details">
-            <p>Subtotal</p>
-            <p>${getTotalCartAmount()}</p>
-          </div>
-          <hr />
-          <div className="cart-total-details">
-            <p>Delivery fee</p>
-            <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
-          </div>
-          <hr />
-          <div className="cart-total-details">
-            <b>Total</b>
-            <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
-          </div>
-          <button onClick={() => navigate("/order")}>
-            PROCEED TO CHECKOUT
+      {getTotalCartAmount() === 0 ? (
+        <p className="cart-empty">
+          Cart is empty. Explore Menu and add to Cart
+        </p>
+      ) : (
+        ""
+      )}
+      {getTotalCartAmount() === 0 ? (
+        <div className="menu">
+          <button className="button" onClick={() => navigate("/")}>
+            CHECKOUT MENU
           </button>
         </div>
+      ) : (
+        ""
+      )}
+      {getTotalCartAmount() !== 0 ? (
+        <div>
+          <div className="cart-bottom">
+            <div className="cart-total">
+              <h2>Cart Total</h2>
+              <div className="cart-total-details">
+                <p>Subtotal</p>
+                <p>${getTotalCartAmount()}</p>
+              </div>
+              <hr />
+              <div className="cart-total-details">
+                <p>Delivery fee</p>
+                <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+              </div>
+              <hr />
+              <div className="cart-total-details">
+                <b>Total</b>
+                <b>
+                  ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
+                </b>
+              </div>
+              <button className="button" onClick={() => navigate("/order")}>
+                PROCEED TO CHECKOUT
+              </button>
+            </div>
 
-        <div className="cart-promocode">
-          <div>
-            <p>If you have a promocode, Enter it here.</p>
-            <div className="cart-promocode-input">
-              <input type="text" placeholder="promo code" />
-              <button>Submit</button>
+            <div className="cart-promocode">
+              <div>
+                <p>If you have a promocode, Enter it here.</p>
+                <div className="cart-promocode-input">
+                  <input type="text" placeholder="promo code" />
+                  <button>Submit</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

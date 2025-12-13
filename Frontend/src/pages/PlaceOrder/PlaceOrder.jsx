@@ -1,13 +1,33 @@
 import React, { useContext } from "react";
 import "./PlaceOrder.css";
+import "../Cart/Cart.css";
 import { StoreContext } from "../../components/Context/StoreContext";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { cartItems, food_list, getTotalCartAmount } = useContext(StoreContext);
   return (
     <form className="place-order">
       <div className="place-order-left">
-        <p className="title">Delivery Information</p>
+        {food_list.map((item, index) => {
+          if (cartItems[item._id] > 0) {
+            return (
+              <>
+                <p className="title">Items</p>
+                <div
+                  className="cart-items-title cart-items-item order-info"
+                  key={index}
+                >
+                  <p>{item.name}</p>
+                  <p>${item.price}</p>
+                  <p>{cartItems[item._id]}</p>
+                  <p>${item.price * cartItems[item._id]}</p>
+                  <img src={item.image} alt="" />
+                </div>
+              </>
+            );
+          }
+        })}
+        <p className="title">Delivery Location</p>
         <div className="multi-fields">
           <input type="text" placeholder="First Name" />
           <input type="text" placeholder="Last Name" />
@@ -40,7 +60,7 @@ const PlaceOrder = () => {
           <b>Total</b>
           <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
         </div>
-        <button>PROCEED TO PAYMENT</button>
+        <button className="button">PROCEED TO PAYMENT</button>
       </div>
     </form>
   );

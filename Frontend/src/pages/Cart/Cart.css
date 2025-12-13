@@ -129,9 +129,7 @@
   .cart-items-item {
     margin: 10px -10px;
   }
-  .cart-items-item div {
-    /* flex-direction: column; */
-  }
+  
   .cart-items-item div img {
     height: 22px;
     width: 22px;

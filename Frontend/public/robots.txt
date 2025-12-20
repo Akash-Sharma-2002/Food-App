@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://food-app-eosin-six.vercel.app/sitemap.xml

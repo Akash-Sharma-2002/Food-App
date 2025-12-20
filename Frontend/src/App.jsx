@@ -14,10 +14,10 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <title>Online Food Delivery App</title>
+        <title>Tomato Food App</title>
         <meta
           name="description"
-          content="We provide online food delivery services at your door step.Order your food 24x7 from anywhere from your local restaurents"
+          content="Tomato Food App. We provide online food delivery services at your door step.Order your food 24x7 from anywhere from your local restaurents"
         />
         <meta property="og:title" content="Online Food Delivery App" />
         <meta
